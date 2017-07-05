@@ -1,0 +1,44 @@
+Whats the flow?
+is this script run on a timer?
+can it be queue based where on mention, this script is run?
+wheres this run? Azure function? heroku? Amazon lambda?
+
+Ideally:
+someone mentions twitter bot
+Task runs that gets tweet info: submitter, tweet message, stripping out just the query
+Compiler takes query and transforms into action to perform query against data source
+Data returned is formatted to:
+tweet back just text? - phase 1
+how about an image of the stats, in table form; image is hosted and pasted as image url in tweet - phase 2
+
+Companion site:
+query directly in text field, stats are returned
+is this also the player index app? - NO that is a mobile app or PWA. Something different
+
+Platform Structure
+
+twitter
+
+---------------
+
+twitter bot script
+- transform could take query and convert to graphql query object!
+- transform could take query and simply convert into JSON object similar to human readable
+- shape of query is determined by the endpoint that platform exposes. This might be limiting...
+
+---------------
+
+Platform (REST Api)
+- endpoint to accept player query, stat types, grouping?
+- graphQl endpoint
+- Really, really wanna use asp.net core for this. is graphql supported? How limiting would this be?
+- PostgreSQL as data store...where appropriate...what do we store? What is page scraped? 
+- Security token. each platform client will require a token to communicate directly with Api
+
+First steps
+
+API and client in conjunction so that we know the needs of our client
+Hosting for both API and client twitter bot
+
+Platform notes
+Azure functions can be run based on cron jobs so web scraper for data fetching and stat updates could be done on a schedule...maybe once a day? or on specific days at midnight
